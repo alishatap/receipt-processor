@@ -1,5 +1,5 @@
 CREATE TABLE points_by_id (
-    id INT,
+    id VARCHAR(36),
     points INT,
     PRIMARY KEY ( id )
 );
