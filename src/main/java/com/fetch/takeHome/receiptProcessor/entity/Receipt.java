@@ -5,9 +5,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.Date;
 
 @Data
 @NoArgsConstructor
@@ -17,7 +17,7 @@ public class Receipt {
 
     private String retailName;
     private ArrayList<Item> items;
-    private Date purchaseDate;
+    private LocalDate purchaseDate;
     private LocalTime purchaseTime;
 
 }
