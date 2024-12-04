@@ -7,7 +7,6 @@ public interface PointsService {
 
     //Save operation
     Points savePoints(Receipt receipt);
-    Points generatePoints(Receipt receipt);
 
     //Get operation
     int fetchPoints(String id);

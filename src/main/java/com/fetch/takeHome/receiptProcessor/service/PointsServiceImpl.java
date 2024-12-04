@@ -12,7 +12,6 @@ import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Optional;
 
 @Service
@@ -27,8 +26,7 @@ public class PointsServiceImpl implements PointsService{
         return pointsRepository.save(points);
     }
 
-    //Generate operation
-    public Points generatePoints(Receipt receipt) {
+    private Points generatePoints(Receipt receipt) {
         int points = 0;
         points += getAlphaNumericPoints(receipt.getRetailName());
         points += getTotalCostPoints(receipt.getItems());
