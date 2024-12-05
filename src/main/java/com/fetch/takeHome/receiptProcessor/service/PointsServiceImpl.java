@@ -73,7 +73,7 @@ public class PointsServiceImpl implements PointsService{
 
     private int getItemCountPoints(List<Item> items) {
         int itemCount = items.size();
-        return itemCount/2;
+        return (itemCount/2) * 5;
     }
 
     private int getItemDescriptionPoints(List<Item> items) {
@@ -81,7 +81,8 @@ public class PointsServiceImpl implements PointsService{
         for(Item item : items) {
             String trimmedDescription = item.getShortDescription().trim();
             if(trimmedDescription.length() % 3 == 0) {
-                p += item.getPrice().setScale(0, RoundingMode.UP).intValue();
+                BigDecimal b = item.getPrice().multiply(new BigDecimal("0.2"));
+                p += b.setScale(0, RoundingMode.UP).intValue();
             }
         }
         return p;
@@ -109,6 +110,6 @@ public class PointsServiceImpl implements PointsService{
 
     //Fetch operation
     public Optional<Points> fetchPoints(UUID id) {
-        return pointsRepository.findById(id); //TODO: add type checking
+        return pointsRepository.findById(id);
     }
 }
