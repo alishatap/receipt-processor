@@ -11,8 +11,9 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class PointsServiceImpl implements PointsService{
@@ -28,8 +29,8 @@ public class PointsServiceImpl implements PointsService{
 
     private Points generatePoints(Receipt receipt) {
         int points = 0;
-        points += getAlphaNumericPoints(receipt.getRetailName());
-        points += getTotalCostPoints(receipt.getItems());
+        points += getAlphaNumericPoints(receipt.getRetailer());
+        points += getTotalCostPoints(receipt.getTotal());
         points += getItemCountPoints(receipt.getItems());
         points += getItemDescriptionPoints(receipt.getItems());
         points += getDatePoints(receipt.getPurchaseDate());
@@ -49,12 +50,8 @@ public class PointsServiceImpl implements PointsService{
         return p;
     }
 
-    private int getTotalCostPoints(ArrayList<Item> items) {
+    private int getTotalCostPoints(BigDecimal total) {
         int p = 0;
-        BigDecimal total = new BigDecimal(0);
-        for(Item item : items) {
-            total = total.add(item.getPrice());
-        }
 
         //round dollar points
         //TODO: see if i can do this without converting to double
@@ -74,15 +71,15 @@ public class PointsServiceImpl implements PointsService{
 
     }
 
-    private int getItemCountPoints(ArrayList<Item> items) {
+    private int getItemCountPoints(List<Item> items) {
         int itemCount = items.size();
         return itemCount/2;
     }
 
-    private int getItemDescriptionPoints(ArrayList<Item> items) {
+    private int getItemDescriptionPoints(List<Item> items) {
         int p = 0;
         for(Item item : items) {
-            String trimmedDescription = item.getDescription().trim();
+            String trimmedDescription = item.getShortDescription().trim();
             if(trimmedDescription.length() % 3 == 0) {
                 p += item.getPrice().setScale(0, RoundingMode.UP).intValue();
             }
@@ -111,8 +108,7 @@ public class PointsServiceImpl implements PointsService{
     }
 
     //Fetch operation
-    public int fetchPoints(String id) {
-        Optional<Points> p = pointsRepository.findById(id);
-        return p.get().getPoints(); //TODO: add type checking
+    public Optional<Points> fetchPoints(UUID id) {
+        return pointsRepository.findById(id); //TODO: add type checking
     }
 }
