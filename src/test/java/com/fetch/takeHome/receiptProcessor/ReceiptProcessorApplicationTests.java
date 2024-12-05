@@ -1,4 +1,4 @@
-package com.fetch_take_home.receipt_processor;
+package com.fetch.takeHome.receiptProcessor;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
