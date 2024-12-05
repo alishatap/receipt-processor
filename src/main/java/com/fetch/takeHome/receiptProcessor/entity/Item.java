@@ -12,6 +12,6 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 @Builder
 public class Item {
-    private String description;
+    private String shortDescription;
     private BigDecimal price;
 }
