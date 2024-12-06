@@ -1,0 +1,95 @@
+{
+	"info": {
+		"_postman_id": "c0b15c1b-1632-4599-8e92-34c0858c888e",
+		"name": "Receipt Processor (Fetch take-home)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "40188389"
+	},
+	"item": [
+		{
+			"name": "Target Receipt",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"retailer\": \"Target\",\n    \"purchaseDate\": \"2022-01-01\",\n    \"purchaseTime\": \"13:01\",\n    \"items\": [\n        {\n            \"shortDescription\": \"Mountain Dew 12PK\",\n            \"price\": \"6.49\"\n        },\n        {\n            \"shortDescription\": \"Emils Cheese Pizza\",\n            \"price\": \"12.25\"\n        },\n        {\n            \"shortDescription\": \"Knorr Creamy Chicken\",\n            \"price\": \"1.26\"\n        },\n        {\n            \"shortDescription\": \"Doritos Nacho Cheese\",\n            \"price\": \"3.35\"\n        },\n        {\n            \"shortDescription\": \"   Klarbrunn 12-PK 12 FL OZ  \",\n            \"price\": \"12.00\"\n        }\n    ],\n    \"total\": \"35.35\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/receipts/process",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"receipts",
+						"process"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Corner Market Receipt",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"retailer\": \"M&M Corner Market\",\n    \"purchaseDate\": \"2022-03-20\",\n    \"purchaseTime\": \"14:33\",\n    \"items\": [\n        {\n            \"shortDescription\": \"Gatorade\",\n            \"price\": \"2.25\"\n        },\n        {\n            \"shortDescription\": \"Gatorade\",\n            \"price\": \"2.25\"\n        },\n        {\n            \"shortDescription\": \"Gatorade\",\n            \"price\": \"2.25\"\n        },\n        {\n            \"shortDescription\": \"Gatorade\",\n            \"price\": \"2.25\"\n        }\n    ],\n    \"total\": \"9.00\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/receipts/process",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"receipts",
+						"process"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Fetch",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/receipts/{{id}}/points",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"receipts",
+						"{{id}}",
+						"points"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "id",
+			"value": "55cffb99-e52a-47b5-b333-86d2aade9cd4"
+		}
+	]
+}
